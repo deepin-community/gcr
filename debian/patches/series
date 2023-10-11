@@ -1,1 +1,2 @@
-test-certificate-chain-Wait-for-objects-being-released-by.patch
+systemd-Start-with-graphical-session-instead-of-default.patch
+Fix-FTBFS-on-x32.patch

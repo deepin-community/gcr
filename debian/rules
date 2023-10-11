@@ -7,14 +7,22 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,-z,defs
 # https://gitlab.gnome.org/GNOME/gcr/issues/43
 export DEB_LDFLAGS_MAINT_STRIP = -Wl,-Bsymbolic-functions
 
+ifneq ($(DEB_HOST_ARCH_OS),linux)
+SYSTEMD = -Dsystemd=disabled
+SSH_AGENT = -Dssh_agent=false
+endif
+
 %:
 	dh $@
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
+		-Dauto_features=enabled \
 		-Dgtk_doc=true \
 		-Dintrospection=true \
-		-Dgtk=true
+		-Dgtk=true \
+		$(SSH_AGENT) \
+		$(SYSTEMD)
 
 override_dh_auto_test:
 	# Disable fakeroot as this confuses some of the tests

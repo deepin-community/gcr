@@ -1,0 +1,19 @@
+From: Jeremy Bicha <jeremy.bicha@canonical.com>
+Date: Tue, 24 May 2022 11:45:41 -0400
+Subject: systemd: Start with graphical-session instead of default
+
+https://gitlab.gnome.org/GNOME/gcr/-/merge_requests/91
+---
+ gcr/gcr-ssh-agent.service.in | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gcr/gcr-ssh-agent.service.in b/gcr/gcr-ssh-agent.service.in
+index 2422fe2..20731aa 100644
+--- a/gcr/gcr-ssh-agent.service.in
++++ b/gcr/gcr-ssh-agent.service.in
+@@ -12,4 +12,4 @@ Restart=on-failure
+ 
+ [Install]
+ Also=gcr-ssh-agent.socket
+-WantedBy=default.target
++WantedBy=graphical-session-pre.target
