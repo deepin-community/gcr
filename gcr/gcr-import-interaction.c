@@ -24,20 +24,12 @@
 #include "gcr-import-interaction.h"
 
 /**
- * SECTION:gcr-import-interaction
- * @title: GcrImportInteraction
- * @short_description: User interaction during importing
+ * GcrImportInteraction:
  *
  * This is an interface implemented by a caller performing an import. It allows
  * the importer to ask the caller for further information about the import.
  *
- * It must be implemented on a derived class of #GTlsInteraction
- */
-
-/**
- * GcrImportInteraction:
- *
- * Interface implemented by the caller performing an import.
+ * It must be implemented on a derived class of [class@Gio.TlsInteraction]
  */
 
 /**
@@ -48,7 +40,7 @@
  * @supplement_async: method which asynchronously supplements attributes before import
  * @supplement_finish: method which completes @supplement_async
  *
- * Interface implemented by implementations of #GcrImportInteraction.
+ * Interface implemented by implementations of [iface@ImportInteraction].
  */
 
 typedef GcrImportInteractionIface GcrImportInteractionInterface;
@@ -58,7 +50,7 @@ G_DEFINE_INTERFACE (GcrImportInteraction, gcr_import_interaction, G_TYPE_TLS_INT
 static void
 gcr_import_interaction_default_init (GcrImportInteractionIface *iface)
 {
-	static volatile gsize initialized = 0;
+	static size_t initialized = 0;
 
 	if (g_once_init_enter (&initialized)) {
 		g_once_init_leave (&initialized, 1);
