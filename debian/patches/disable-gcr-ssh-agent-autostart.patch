@@ -1,0 +1,26 @@
+Description: Disable gcr-ssh-agent autostart
+ Disable automatic startup of gcr-ssh-agent service and socket
+ since the system is using gpg-agent for SSH authentication.
+Origin: vendor
+Forwarded: not-needed
+Last-Update: 2025-11-12
+Index: gcr/gcr/gcr-ssh-agent.service.in
+===================================================================
+--- gcr.orig/gcr/gcr-ssh-agent.service.in
++++ gcr/gcr/gcr-ssh-agent.service.in
+@@ -12,4 +12,4 @@ Restart=on-failure
+ 
+ [Install]
+ Also=gcr-ssh-agent.socket
+-WantedBy=graphical-session-pre.target
++# WantedBy=graphical-session-pre.target
+Index: gcr/gcr/gcr-ssh-agent.socket
+===================================================================
+--- gcr.orig/gcr/gcr-ssh-agent.socket
++++ gcr/gcr/gcr-ssh-agent.socket
+@@ -8,4 +8,4 @@ ListenStream=%t/gcr/ssh
+ DirectoryMode=0700
+ 
+ [Install]
+-WantedBy=sockets.target
++# WantedBy=sockets.target
