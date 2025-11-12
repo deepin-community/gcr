@@ -1,2 +1,3 @@
 systemd-Start-with-graphical-session-instead-of-default.patch
 Fix-FTBFS-on-x32.patch
+disable-gcr-ssh-agent-autostart.patch
