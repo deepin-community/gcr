@@ -1,0 +1,27 @@
+From: Niels De Graef <nielsdegraef@gmail.com>
+Date: Wed, 12 Feb 2025 10:26:34 +0100
+Subject: gck: disable parallel tests using gck-mock module
+
+Our tests are regularly failing when run in parallel, since the tests
+are all loading the gck-mock module and changing objects there, racing
+with each other. Explicitly prevent this by marking the tests as not
+parallel in meson.
+
+(cherry picked from commit 9aeff4c3851b35338a812ebc05a4c46d486e1fa5)
+
+Origin: upstream 4.4.0.1
+---
+ gck/meson.build | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/gck/meson.build b/gck/meson.build
+index a21a1e9..d3409d4 100644
+--- a/gck/meson.build
++++ b/gck/meson.build
+@@ -206,5 +206,6 @@ foreach _test : gck_test_names
+   test(_test, gck_test_bin,
+     suite: 'gck',
+     depends: gck_mock_test_lib,
++    is_parallel: false,
+   )
+ endforeach

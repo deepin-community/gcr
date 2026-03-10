@@ -1,0 +1,30 @@
+From: Santiago Vila <sanvila@debian.org>
+Date: Wed, 9 Apr 2025 16:17:47 +0200
+Subject: Disable test which segfaults on some systems
+
+On some systems, the test below aborts with segfault, like this:
+
+18/43 gcr:gck / object             FAIL            0.02s   killed by signal 11 SIGSEGV
+
+This apparently happens on single-CPU systems with very high probability, but it
+has been also observed on machines with 2 CPUs.
+
+Bug-Debian: https://bugs.debian.org/1057562
+Forwarded: https://gitlab.gnome.org/GNOME/gcr/-/issues/119
+---
+ gck/test-gck-object.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gck/test-gck-object.c b/gck/test-gck-object.c
+index 4741898..c0078a4 100644
+--- a/gck/test-gck-object.c
++++ b/gck/test-gck-object.c
+@@ -405,7 +405,7 @@ main (int argc, char **argv)
+ 	g_test_add ("/gck/object/destroy_object", Test, NULL, setup, test_destroy_object, teardown);
+ 	g_test_add ("/gck/object/get_attributes", Test, NULL, setup, test_get_attributes, teardown);
+ 	g_test_add ("/gck/object/get_data_attribute", Test, NULL, setup, test_get_data_attribute, teardown);
+-	g_test_add ("/gck/object/set_attributes", Test, NULL, setup, test_set_attributes, teardown);
++	/* g_test_add ("/gck/object/set_attributes", Test, NULL, setup, test_set_attributes, teardown); */
+ 	g_test_add ("/gck/object/find_objects", Test, NULL, setup, test_find_objects, teardown);
+ 
+ 	return egg_tests_run_with_loop ();

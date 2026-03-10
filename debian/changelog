@@ -1,8 +1,45 @@
-gcr (3.41.1-3deepin1) unstable; urgency=medium
+gcr (3.41.2-3) unstable; urgency=medium
 
-  * disable gcr-ssh-agent autostart
+  [ Santiago Vila ]
+  * Add patch to disable a test that segfaults on some systems
+    (Closes: #1069402)
 
- -- fuleyi <fuleyi@uniontech.com>  Wed, 12 Nov 2025 13:58:26 +0800
+ -- Matthias Geiger <werdahias@debian.org>  Sat, 03 May 2025 10:27:57 +0200
+
+gcr (3.41.2-2) unstable; urgency=medium
+
+  * Cherry-pick patch to disable parallel running of a build test.
+    Mitigates: #1057562
+  * Bump Standards Version to 4.7.0
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Fri, 21 Mar 2025 17:21:21 -0400
+
+gcr (3.41.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * Drop dh-exec since it's no longer used here
+  * Drop patch applied in new release
+  * Ignore build test failures on s390x as was done with gcr4
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 27 Feb 2024 16:44:55 -0500
+
+gcr (3.41.1-5) unstable; urgency=medium
+
+  * Stop building the gcr-ssh-agent service
+  * Have gcr depend on gcr4 which provides that service now
+  * Stop using debian/control.in and dh_gnome_clean
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 27 Feb 2024 14:50:50 -0500
+
+gcr (3.41.1-4) unstable; urgency=medium
+
+  * debian/patches/gitlab_meson_resource.patch:
+    - cherry pick a fix proposed upstream to fix a regression in the port
+      to meson where one the gresource files isn't include anymore which
+      is needed for pkcs11 certificates import. (lp: #1771880)
+      Thanks Damjan Jovanovic for working on the issue
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 20 Dec 2023 10:59:16 +0100
 
 gcr (3.41.1-3) unstable; urgency=medium
 
