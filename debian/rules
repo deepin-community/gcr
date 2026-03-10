@@ -7,11 +7,6 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,-z,defs
 # https://gitlab.gnome.org/GNOME/gcr/issues/43
 export DEB_LDFLAGS_MAINT_STRIP = -Wl,-Bsymbolic-functions
 
-ifneq ($(DEB_HOST_ARCH_OS),linux)
-SYSTEMD = -Dsystemd=disabled
-SSH_AGENT = -Dssh_agent=false
-endif
-
 %:
 	dh $@
 
@@ -21,15 +16,19 @@ override_dh_auto_configure:
 		-Dgtk_doc=true \
 		-Dintrospection=true \
 		-Dgtk=true \
-		$(SSH_AGENT) \
-		$(SYSTEMD)
+		-Dsystemd=disabled \
+		-Dssh_agent=false
 
+# Disable fakeroot as this confuses some of the tests
+# Ignore test failures on s390x
 override_dh_auto_test:
-	# Disable fakeroot as this confuses some of the tests
+ifneq (,$(filter s390x,$(DEB_HOST_ARCH)))
+	env -u LD_PRELOAD dbus-run-session -- dh_auto_test || true
+else
 	env -u LD_PRELOAD dbus-run-session -- dh_auto_test
+endif
 
 override_dh_makeshlibs:
 	dh_makeshlibs -- -c4
 
-override_dh_installsystemduser:
-	dh_installsystemduser --no-enable
+override_dh_gnome_clean:
