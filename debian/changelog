@@ -1,3 +1,9 @@
+gcr (3.41.2-3deepin2) unstable; urgency=medium
+
+  * Remove gcr4 dependency from debian/control
+
+ -- lichenggang <lichenggang@uniontech.com>  Wed, 18 Mar 2026 15:53:24 +0800
+
 gcr (3.41.2-3deepin1) unstable; urgency=medium
 
   * disable gcr-ssh-agent autostart.
