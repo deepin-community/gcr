@@ -34,7 +34,6 @@ Homepage: https://wiki.gnome.org/Projects/GnomeKeyring
 Package: gcr
 Architecture: any
 Depends: default-dbus-session-bus | dbus-session-bus,
-         gcr4,
          libgcr-base-3-1 (= ${binary:Version}),
          libgcr-ui-3-1 (= ${binary:Version}),
          ${misc:Depends},
