@@ -1,3 +1,9 @@
+gcr (3.41.2-3deepin3) unstable; urgency=medium
+
+  * Rebuild with LTO enabled (dpkg vendor feature optimize/lto).
+
+ -- tunaichao <tunaichao@uniontech.com>  Thu, 10 Sep 2026 17:21:24 +0800
+
 gcr (3.41.2-3deepin2) unstable; urgency=medium
 
   * Remove gcr4 dependency from debian/control
