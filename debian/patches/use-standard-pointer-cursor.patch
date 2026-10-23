@@ -1,0 +1,25 @@
+Description: Use the standard pointer cursor in the certificate viewer
+ Replace GDK_ARROW with GDK_LEFT_PTR for the details control and certificate
+ display area.
+Last-Update: 2026-10-23
+
+--- a/ui/gcr-display-view.c
++++ b/ui/gcr-display-view.c
+@@ -230,7 +230,7 @@
+ static void
+ on_expander_realize (GtkWidget *widget, gpointer user_data)
+ {
+-	GdkCursor *cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget), GDK_ARROW);
++	GdkCursor *cursor = gdk_cursor_new_for_display (gtk_widget_get_display (widget), GDK_LEFT_PTR);
+ 	gdk_window_set_cursor (gtk_widget_get_window (widget), cursor);
+ 	g_object_unref (cursor);
+ }
+@@ -621,7 +621,7 @@
+ 	if (!self->pv->cursor) {
+ 		display = gtk_widget_get_display (GTK_WIDGET (self));
+-		self->pv->cursor = gdk_cursor_new_for_display (display, GDK_ARROW);
++		self->pv->cursor = gdk_cursor_new_for_display (display, GDK_LEFT_PTR);
+ 	}
+
+ 	gdk_window_set_cursor (gtk_text_view_get_window (GTK_TEXT_VIEW (self), GTK_TEXT_WINDOW_WIDGET),
+ 	                       self->pv->cursor);

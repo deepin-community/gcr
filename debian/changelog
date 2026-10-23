@@ -1,3 +1,9 @@
+gcr (3.41.2-3deepin5) unstable; urgency=medium
+
+  * Use the standard pointer cursor in the certificate viewer.
+
+ -- dongshengyuan <dongshengyuan@uniontech.com>  Fri, 23 Oct 2026 10:24:12 +0800
+
 gcr (3.41.2-3deepin4) unstable; urgency=medium
 
   * Pass selected files to gcr-viewer from its desktop entry.

@@ -4,3 +4,4 @@ gck-disable-parallel-tests-using-gck-mock-module.patch
 disable-test-which-segfaults.patch
 disable-gcr-ssh-agent-autostart.patch
 fix-gcr-viewer-desktop-file-argument.patch
+use-standard-pointer-cursor.patch
